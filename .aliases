@@ -1,0 +1,27 @@
+# some more ls aliases
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'
+alias cd..="cd .."
+alias df="df -Tha --total"
+alias du="du -ach | sort -h"
+alias free="free -mt"
+alias ps="ps auxf"
+alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
+alias mkdir="mkdir -pv"
+alias wget="wget -c"
+alias histg="history | grep"
+alias myip="curl http://ipecho.net/plain; echo"
+alias explore='nautilus .'
+alias suexplore='sudo nautilus .'
+alias ..='cd ..'
+alias svim='sudo vim'
+alias tgz='tar -zxvf'
+alias tbz='tar -jxvf'
+alias agi='sudo apt-get install'
+alias agr='sudo apt-get remove'
+alias agu='sudo apt-get update'
+alias greps='grep -rn . -e '
+alias ack="ack-grep --ignore-file=ext:log --pager='less -RX'"
+alias gti='git'
+alias bss="bin/spring"
