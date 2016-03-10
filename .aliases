@@ -27,10 +27,6 @@ alias gti='git'
 alias bss="bin/spring"
 
 
-
-export GR_HOME=${HOME}/GR
-export GR_USERNAME=richard.garcia
-
 #GR project aliases
 alias jarvis='cd ${GR_HOME}/jarvis'
 alias banyan='cd ${GR_HOME}/banyan'
