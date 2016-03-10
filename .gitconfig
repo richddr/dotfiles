@@ -1,0 +1,16 @@
+[user]
+    name = Richard Garcia
+    email = richard.garcia@grandrounds.com
+[color]
+    ui = true
+[push]
+    default = simple
+[pull]
+    default = simple
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status
+	last = log -1 HEAD
+	visual = !gitk
