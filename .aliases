@@ -25,3 +25,27 @@ alias greps='grep -rn . -e '
 alias ack="ack-grep --ignore-file=ext:log --pager='less -RX'"
 alias gti='git'
 alias bss="bin/spring"
+
+
+
+export GR_HOME=${HOME}/GR
+export GR_USERNAME=richard.garcia
+
+#GR project aliases
+alias jarvis='cd ${GR_HOME}/jarvis'
+alias banyan='cd ${GR_HOME}/banyan'
+alias tp='cd ${GR_HOME}/tp'
+alias tim='cd ${GR_HOME}/tim'
+alias bain='cd ${GR_HOME}/bain'
+alias black='cd ${GR_HOME}/black'
+alias eng='cd ${GR_HOME}/engineering'
+alias frick='cd ${GR_HOME}/frick'
+alias honesty='cd ${GR_HOME}/honesty'
+alias metal='cd ${GR_HOME}/metal'
+alias monger='cd ${GR_HOME}/monger-cordova'
+alias puppet='cd ${GR_HOME}/puppet'
+alias rogers='cd ${GR_HOME}/rogers'
+alias stone='cd ${GR_HOME}/stone'
+alias warehouse='cd ${GR_HOME}/warehouse'
+alias twinkleshine='cd ${GR_HOME}/twinkleshine'
+alias looker='cd ${GR_HOME}/looker-richard_garcia'
