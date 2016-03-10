@@ -24,10 +24,11 @@ Plugin 'gmarik/Vundle.vim'
 " Plugin 'file:///Users/gmarik/path/to/plugin'
 " ...
 "
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
 Plugin 'vim-ruby/vim-ruby'
 Plugin 'scrooloose/nerdtree'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'bling/vim-airline'
 Plugin 'taglist.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'altercation/vim-colors-solarized'
