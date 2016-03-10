@@ -113,3 +113,32 @@ done
 
 #. /etc/profile.d/vte.sh
 
+function parse_git_branch () {
+  git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+}
+
+RED="\033[0;31m"
+YELLOW="\033[0;33m"
+GREEN="\033[0;32m"
+NO_COLOR="\033[0m"
+LTBLUE="\033[1;34m"
+
+function git_color {
+  local git_status="$(git status 2> /dev/null)"
+
+  if [[ $git_status =~ "working directory clean" ]]; then
+    echo -e $GREEN
+  elif [[ $git_status =~ "Your branch is ahead of" ]]; then
+    echo -e $YELLOW
+  elif [[ $git_status =~ "nothing added to commit but untracked" ]]; then
+    echo -e $YELLOW
+  elif [[ $git_status =~ "Changes to be committed" ]]; then
+    echo -e $YELLOW
+  elif [[ $git_status =~ "Changes not staged for commit" ]]; then
+    echo -e $RED
+  else
+    echo -e $NO_COLOR
+  fi
+}
+
+PS1="\[$LTBLUE\]\h\[$NO_COLOR\]:\w\[\$(git_color)\]\$(parse_git_branch)\[$NO_COLOR\]\$ "
