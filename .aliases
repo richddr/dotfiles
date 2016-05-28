@@ -25,6 +25,7 @@ alias greps='grep -rn . -e '
 alias ack="ack-grep --ignore-file=ext:log --pager='less -RX'"
 alias gti='git'
 alias bss="bin/spring"
+alias recent-note='subl ~/Dropbox/Documents/GR/Notes/$(date +%Y-%B)-Week-$((($(date +%-d)-1)/7+1)).notes.txt'
 
 
 #GR project aliases
