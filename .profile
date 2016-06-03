@@ -50,3 +50,8 @@ histgrep () {
     grep -r "$@" ~/.history
     history | grep "$@"
 }
+
+setup-monitors () {
+  xrandr --output DP2-1 --primary
+  xrandr --output DP2-1 --left-of eDP1
+}
