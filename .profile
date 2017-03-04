@@ -9,6 +9,8 @@
 #umask 022
 
 export ANDROID_HOME="/home/rgarcia/Android/Sdk/"
+export GR_HOME=${HOME}/GR
+export GR_USERNAME=richard.garcia
 
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
@@ -17,6 +19,17 @@ if [ -n "$BASH_VERSION" ]; then
 	. "$HOME/.bashrc"
     fi
 fi
+
+for file in $(\ls -1 ${GR_HOME}/engineering/bash/*.sh); do
+  source $file;
+done
+
+if [ -f ${HOME}/.bash/ ]; then
+  for file in $(\ls -1 ${HOME}/.bash/*.sh); do
+    source $file;
+  done
+fi
+export PATH=${GR_HOME}/engineering/bin:${PATH}
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
@@ -36,4 +49,9 @@ HISTFILESIZE=10000000
 histgrep () {
     grep -r "$@" ~/.history
     history | grep "$@"
+}
+
+setup-monitors () {
+  xrandr --output DP2-1 --primary
+  xrandr --output DP2-1 --left-of eDP1
 }

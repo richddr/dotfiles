@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-  export ZSH=/home/rgarcia/.oh-my-zsh
+export ZSH=/home/rgarcia/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -54,7 +54,6 @@ plugins=(git)
 
 # User configuration
 
-  export PATH="/home/rgarcia/.rvm/gems/ruby-2.1.5/bin:/home/rgarcia/.rvm/gems/ruby-2.1.5@global/bin:/home/rgarcia/.rvm/rubies/ruby-2.1.5/bin:/home/rgarcia/GR/engineering/bin:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/home/rgarcia/Android/Sdk/tools:/home/rgarcia/Android/Sdk/platform-tools:/home/rgarcia/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -87,3 +86,6 @@ source $HOME/.aliases
 
 #Source my .profile
 source $HOME/.profile
+
+# Source aws completer
+source /usr/local/bin/aws_zsh_completer.sh

@@ -25,11 +25,8 @@ alias greps='grep -rn . -e '
 alias ack="ack-grep --ignore-file=ext:log --pager='less -RX'"
 alias gti='git'
 alias bss="bin/spring"
+alias recent-note='subl ~/Dropbox/Documents/GR/Notes/$(date +%Y-%W).notes.txt'
 
-
-
-export GR_HOME=${HOME}/GR
-export GR_USERNAME=richard.garcia
 
 #GR project aliases
 alias jarvis='cd ${GR_HOME}/jarvis'
