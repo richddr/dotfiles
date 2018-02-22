@@ -1,0 +1,41 @@
+{
+  "binary_file_patterns":
+  [
+    "*.dds",
+    "*.eot",
+    "*.gif",
+    "*.ico",
+    "*.jar",
+    "*.jpeg",
+    "*.jpg",
+    "*.pdf",
+    "*.png",
+    "*.swf",
+    "*.tga",
+    "*.ttf",
+    "*.zip",
+    "/home/rgarcia/GR/metropolis/airflow/logs/**"
+  ],
+  "color_scheme": "Packages/User/SublimeLinter/base16-eighties.dark (SL).tmTheme",
+  "default_line_ending": "unix",
+  "enable_tab_scrolling": true,
+  "ensure_newline_at_eof_on_save": true,
+  "font_size": 13,
+  "ignored_packages":
+  [
+    "JavaScript",
+    "SublimeLinter-rubocop",
+    "Vintage"
+  ],
+  "index_files": true,
+  "rulers":
+  [
+    80,
+    110
+  ],
+  "spacegray_fileicons": true,
+  "tab_size": 2,
+  "theme": "Spacegray Eighties.sublime-theme",
+  "translate_tabs_to_spaces": true,
+  "trim_trailing_white_space_on_save": true
+}
