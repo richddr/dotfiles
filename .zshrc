@@ -1,12 +1,11 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/home/rgarcia/.oh-my-zsh
+export ZSH=/Users/rgarcia/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
 ZSH_THEME="robbyrussell"
-#ZSH_THEME="agnoster"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -31,7 +30,7 @@ ZSH_THEME="robbyrussell"
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -50,7 +49,23 @@ ZSH_THEME="robbyrussell"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(
+  git
+  z
+  history
+  sublime
+  aws
+  zsh-autosuggestions
+  yarn
+  google
+  vsc
+  urltools
+  scala
+  rails
+  jsontools
+  encode64
+  bundler
+  )
 
 # User configuration
 
@@ -59,7 +74,7 @@ plugins=(git)
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
-# export LANG=en_US.UTF-8
+export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -72,7 +87,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -82,10 +97,35 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+#
 source $HOME/.aliases
 
-#Source my .profile
-source $HOME/.profile
+# Load everything from profile.d folder
+for file in ${HOME}/.profile.d/*.sh; do
+  source ${file};
+done
 
-# Source aws completer
-source /usr/local/bin/aws_zsh_completer.sh
+#source aws completed
+source /usr/local/bin/aws_completer
+eval $(thefuck --alias)
+
+# let's use the tag name as group name
+zstyle ':completion:*' group-name ''
+
+# activate menu selection
+zstyle ':completion:*' menu select
+zstyle ':bracketed-paste-magic' active-widgets '.self-*'
+# let's complete known hosts and hosts from ssh's known_hosts file
+# basehost="host1.example.com host2.example.com"
+# hosts=($((
+# ( [ -r .ssh/known_hosts ] && awk '{print $1}' .ssh/known_hosts | tr , '\n');\
+# echo $basehost; ) | sort -u) ))
+
+#ii:zstyle ':completion:*' hosts $hosts
+
+# export NVM_DIR="/Users/rgarcia/.nvm"
+# [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+export PATH="/usr/local/sbin:$PATH"
+export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
+
