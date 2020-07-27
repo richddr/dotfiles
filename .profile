@@ -8,10 +8,6 @@
 # for ssh logins, install and configure the libpam-umask package.
 #umask 022
 
-export ANDROID_HOME="/home/rgarcia/Android/Sdk/"
-export GR_HOME=${HOME}/GR
-export GR_USERNAME=richard.garcia
-
 # if running bash
 if [ -n "$BASH_VERSION" ]; then
     # include .bashrc if it exists
@@ -20,16 +16,11 @@ if [ -n "$BASH_VERSION" ]; then
     fi
 fi
 
-for file in $(\ls -1 ${GR_HOME}/engineering/bash/*.sh); do
-  source $file;
-done
-
 if [ -f ${HOME}/.bash/ ]; then
   for file in $(\ls -1 ${HOME}/.bash/*.sh); do
     source $file;
   done
 fi
-export PATH=${GR_HOME}/engineering/bin:${PATH}
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/bin" ] ; then
