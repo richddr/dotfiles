@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH=/Users/rgarcia/.oh-my-zsh
+export ZSH="/home/rgarcia/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -53,18 +53,20 @@ plugins=(
   git
   z
   history
-  sublime
+  terraform
   aws
   zsh-autosuggestions
   yarn
-  google
-  vsc
+  vscode
   urltools
-  scala
-  rails
   jsontools
   encode64
-  bundler
+  python
+  docker
+  docker-compose
+  common-aliases
+  asdf
+  zsh-syntax-highlighting
   )
 
 # User configuration
@@ -87,7 +89,7 @@ export LANG=en_US.UTF-8
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -101,12 +103,12 @@ export SSH_KEY_PATH="~/.ssh/dsa_id"
 source $HOME/.aliases
 
 # Load everything from profile.d folder
-for file in ${HOME}/.profile.d/*.sh; do
-  source ${file};
-done
+# for file in ${HOME}/.profile.d/*.sh; do
+#   source ${file};
+# done
 
 #source aws completed
-source /usr/local/bin/aws_completer
+# source /usr/local/bin/aws_completer
 eval $(thefuck --alias)
 
 # let's use the tag name as group name
@@ -125,7 +127,6 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # export NVM_DIR="/Users/rgarcia/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/Applications/Postgres.app/Contents/Versions/9.5/bin:$PATH"
+
 
