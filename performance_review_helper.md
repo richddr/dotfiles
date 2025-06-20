@@ -28,3 +28,9 @@ Only help answer where applicable based on my work history.
 ```
 Here's the sample response for when I last ran this:
 https://gist.github.com/richddr/86be445fb4cccc972ac29467f1b032cb
+
+# Notes
+- Before moving on to my next job, run this report to get all my GH at my current company to generate a summary which I can use to flesh out my resume.
+
+# Additional Resources
+- https://jvns.ca/blog/brag-documents/
