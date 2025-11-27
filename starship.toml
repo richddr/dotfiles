@@ -1,0 +1,33 @@
+# Starship Configuration
+# Use emojis for fun icons!
+
+[git_branch]
+symbol = "🌱 "
+
+[package]
+symbol = "📦 "
+
+[nodejs]
+symbol = "🟢 "
+
+[rust]
+symbol = "🦀 "
+
+[python]
+symbol = "🐍 "
+
+[golang]
+symbol = "🐹 "
+
+[docker_context]
+symbol = "🐳 "
+
+[aws]
+symbol = "☁️ "
+
+[directory]
+read_only = " 🔒"
+
+[character]
+success_symbol = "[➜](bold green)"
+error_symbol = "[✗](bold red)"

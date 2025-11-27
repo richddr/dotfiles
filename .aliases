@@ -12,15 +12,24 @@ alias mkdir="mkdir -pv"
 alias wget="wget -c"
 alias histg="history | grep"
 alias myip="curl http://ipecho.net/plain; echo"
-alias explore='nautilus .'
-alias suexplore='sudo nautilus .'
+# OS-specific aliases
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    alias open='open .'
+    alias install='brew install'
+    alias explore='open .'
+    alias suexplore='sudo open .'
+else
+    alias explore='nautilus .'
+    alias suexplore='sudo nautilus .'
+    alias agi='sudo apt-get install'
+    alias agr='sudo apt-get remove'
+    alias agu='sudo apt-get update'
+fi
+
 alias ..='cd ..'
 alias svim='sudo vim'
 alias tgz='tar -zxvf'
 alias tbz='tar -jxvf'
-alias agi='sudo apt-get install'
-alias agr='sudo apt-get remove'
-alias agu='sudo apt-get update'
 alias greps='grep -rn . -e '
 alias ack="ack-grep --ignore-file=ext:log --pager='less -RX'"
 alias gti='git'

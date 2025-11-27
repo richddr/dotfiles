@@ -1,69 +1,56 @@
 set nocompatible               " be iMproved
 filetype off                   " required!
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+" Auto-install vim-plug
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
-" let Vundle manage Vundle
-" required!
-Plugin 'gmarik/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
-" My Bundles here:
-"
-" original repos on github
-" Plugin 'tpope/vim-fugitive'
-" Plugin 'Lokaltog/vim-easymotion'
-" Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
-" Plugin 'tpope/vim-rails.git'
-" vim-scripts repos
-" Plugin 'L9'
-" Plugin 'FuzzyFinder'
-" non github repos
-" Plugin 'git://git.wincent.com/command-t.git'
-" git repos on your local machine (ie. when working on your own plugin)
-" Plugin 'file:///Users/gmarik/path/to/plugin'
-" ...
-"
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'scrooloose/nerdtree'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'taglist.vim'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-cucumber'
-Plugin 'tpope/vim-surround'
-Plugin 'kien/ctrlp.vim'
-Plugin 'slim-template/vim-slim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'kana/vim-textobj-user'
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'jnwhiteh/vim-golang'
-Plugin 'majutsushi/tagbar'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'ervandew/supertab'
-"Plugin 'Valloric/YouCompleteMe'
-Plugin 'sjl/gundo.vim'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'scrooloose/syntastic'
-Plugin 'rking/ag.vim'
-Plugin 'lmeijvogel/vim-yaml-helper'
-Plugin 'bronson/vim-trailing-whitespace'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'regedarek/ZoomWin'
-Plugin 'ekalinin/Dockerfile.vim'
+" Plugins
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-ruby/vim-ruby'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdcommenter'
+Plug 'vim-scripts/taglist.vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'altercation/vim-colors-solarized'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-cucumber'
+Plug 'tpope/vim-surround'
+Plug 'slim-template/vim-slim'
+Plug 'kchmck/vim-coffee-script'
+Plug 'thoughtbot/vim-rspec'
+Plug 'kana/vim-textobj-user'
+Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'jnwhiteh/vim-golang'
+Plug 'majutsushi/tagbar'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
+Plug 'jiangmiao/auto-pairs'
+Plug 'ervandew/supertab'
+Plug 'sjl/gundo.vim'
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'rking/ag.vim'
+Plug 'lmeijvogel/vim-yaml-helper'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'Lokaltog/vim-easymotion'
+Plug 'regedarek/ZoomWin'
+Plug 'ekalinin/Dockerfile.vim'
 
+" New plugins replacing old ones
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+" Plug 'dense-analysis/ale' " Replacement for syntastic (optional)
 
-" All of your Plugins must be added before the following line
-call vundle#end()            " required
-filetype plugin indent on    " required
+call plug#end()
+
 
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
@@ -123,6 +110,16 @@ set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set backupskip=/tmp/*,/private/tmp/*
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set writebackup
+
+" Persistent Undo
+if has('persistent_undo')
+    set undofile
+    set undodir=~/.vim/undo
+    if !isdirectory(expand('~/.vim/undo'))
+        call mkdir(expand('~/.vim/undo'), 'p')
+    endif
+endif
+
 " this makes everything you do fuck with the system clipboard
 "set clipboard=unnamedplus
 
@@ -224,24 +221,13 @@ let g:airline_left_sep=''
 let g:airline_right_sep=''
 
 
-" ctrlp
-let g:ctrlp_map = '<C-p>'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_root_markers = ['Gemfile', 'project.clj']
-"let g:ctrlp_match_window_bottom = 0
-"let g:ctrlp_match_window_reversed = 0
-"let g:ctrlp_cmd = 'CtrlPMRU'
-" Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-let g:ctrlp_user_command = 'ag %s -l --nocolor --nogroup --hidden --smart-case -g ""'
-" overcome limit imposed by max height
-let g:ctrlp_match_window = 'results:50'
-" ag is fast enough that CtrlP doesn't need to cache
-let g:ctrlp_use_caching = 0
-let g:ctrlp_mruf_relative = 1
-let g:ctrlp_mruf_exclude = '/tmp/.*\|\.git/.*'
-nnoremap <C-h> :CtrlPTag<CR>
-nnoremap <C-j> :CtrlPMRU<CR>
-nnoremap <C-k> :CtrlPBuffer<CR>
+" fzf
+let g:fzf_layout = { 'down': '~40%' }
+nnoremap <C-p> :Files<CR>
+nnoremap <C-h> :Tags<CR>
+nnoremap <C-j> :History<CR>
+nnoremap <C-k> :Buffers<CR>
+
 
 
 " tagbar
@@ -274,10 +260,7 @@ let g:AutoPairsShortcutFastWrap = '<C-a>'
 let g:agprg="ag --nocolor --nogroup --column --hidden --smart-case --ignore log"
 
 
-" syntastic
-let g:syntastic_mode_map = { 'mode': 'passive',
-              \ 'active_filetypes': [],
-              \ 'passive_filetypes': [] }
+
 
 
 " easymotion

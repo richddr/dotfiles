@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/rgarcia/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -109,7 +109,9 @@ source $HOME/.aliases
 
 #source aws completed
 # source /usr/local/bin/aws_completer
-eval $(thefuck --alias)
+if command -v thefuck &> /dev/null; then
+  eval $(thefuck --alias)
+fi
 
 # let's use the tag name as group name
 zstyle ':completion:*' group-name ''
@@ -130,3 +132,16 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 export PATH="/usr/local/sbin:$PATH"
 
 
+
+# History Configuration
+HISTSIZE=10000
+SAVEHIST=20000
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt SHARE_HISTORY
+setopt EXTENDED_HISTORY
+
+# Starship Prompt
+if command -v starship &> /dev/null; then
+    eval "$(starship init zsh)"
+fi
