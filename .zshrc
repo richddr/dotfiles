@@ -156,3 +156,14 @@ eval "$(direnv hook zsh)"
 
 # FZF Keybindings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+# Atuin (Magical Shell History)
+eval "$(atuin init zsh)"
+
+# Ported from .profile
+histgrep () {
+    if [ -d "$HOME/.history" ]; then
+        grep -r "$@" ~/.history
+    fi
+    history 0 | grep "$@"
+}
