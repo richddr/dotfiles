@@ -163,8 +163,8 @@ nmap <silent> k gk
 autocmd BufWinEnter * if &buftype == 'quickfix' | setlocal nonumber | endif
 
 " Use ag over grep
-"set grepprg=ag\ --nogroup\ --nocolor
-"set grepprg=git\ grep
+" Use ripgrep over grep
+set grepprg=rg\ --vimgrep\ --smart-case\ --follow
 
 " Searching
 " global search prompt

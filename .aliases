@@ -1,7 +1,7 @@
 # some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+alias ll='eza -alF --icons'
+alias la='eza -A --icons'
+alias l='eza -CF --icons'
 alias cd..="cd .."
 alias df="df -Tha --total"
 alias du="du -ach | sort -h"
@@ -11,6 +11,7 @@ alias psg="ps aux | grep -v grep | grep -i -e VSZ -e"
 alias mkdir="mkdir -pv"
 alias wget="wget -c"
 alias histg="history | grep"
+alias cat="bat"
 alias myip="curl http://ipecho.net/plain; echo"
 # OS-specific aliases
 if [[ "$OSTYPE" == "darwin"* ]]; then

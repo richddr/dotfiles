@@ -51,7 +51,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   git
-  z
   history
   terraform
   aws
@@ -141,7 +140,19 @@ setopt HIST_IGNORE_SPACE
 setopt SHARE_HISTORY
 setopt EXTENDED_HISTORY
 
+# CDPATH - allows cd to directories in ~/gh directly
+cdpath=($HOME/gh $cdpath)
+
 # Starship Prompt
 if command -v starship &> /dev/null; then
     eval "$(starship init zsh)"
 fi
+
+# Zoxide (better cd)
+eval "$(zoxide init zsh)"
+
+# Direnv
+eval "$(direnv hook zsh)"
+
+# FZF Keybindings
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
