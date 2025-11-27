@@ -167,3 +167,17 @@ histgrep () {
     fi
     history 0 | grep "$@"
 }
+
+# Archive history (Ported from .profile)
+# Creates a daily archive file in ~/.history/YYYY/MM/
+_archive_history() {
+  local hist_dir="${HOME}/.history/$(date -u +%Y/%m)"
+  if [ ! -d "$hist_dir" ]; then
+    mkdir -p "$hist_dir"
+  fi
+  local hist_file="$hist_dir/$(date -u +%Y-%m-%d).history"
+  # Append the last command to the archive file
+  fc -ln -1 >> "$hist_file"
+}
+autoload -U add-zsh-hook
+add-zsh-hook precmd _archive_history
