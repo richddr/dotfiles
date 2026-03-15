@@ -1,0 +1,6 @@
+[Unit]
+Description=Backup Pi user config and tool state
+
+[Service]
+Type=oneshot
+ExecStart=%h/.local/bin/pi-backup-config

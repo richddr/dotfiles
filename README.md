@@ -32,6 +32,8 @@ Those belong in local-only files outside git.
 - [`.zshrc.local.example`](/Users/rgarcia/gh/dotfiles/.zshrc.local.example): example machine-local shell overlay
 - [`.gitconfig.local.example`](/Users/rgarcia/gh/dotfiles/.gitconfig.local.example): example machine-local Git overlay
 - [bootstrap.sh](/Users/rgarcia/gh/dotfiles/bootstrap.sh): idempotent machine bootstrap helper
+- [bootstrap-linux-packages.sh](/Users/rgarcia/gh/dotfiles/bootstrap-linux-packages.sh): install the Linux package/tool baseline
+- [pi-backup-config.sh](/Users/rgarcia/gh/dotfiles/pi-backup-config.sh): Pi config backup script
 
 ## Local Files
 
@@ -99,6 +101,13 @@ Bootstrap option:
 ~/gh/dotfiles/bootstrap.sh
 ```
 
+If you are bringing up a Linux dev box or Raspberry Pi, run:
+
+```bash
+~/gh/dotfiles/bootstrap-linux-packages.sh
+~/gh/dotfiles/bootstrap.sh
+```
+
 ## Linux / Pi Setup
 
 For Linux or Raspberry Pi:
@@ -122,6 +131,13 @@ Bootstrap option:
 ```
 
 Whether `~/.zshrc` itself should symlink to the repo depends on how much host-specific customization that machine needs. If a machine has heavier local differences, keep a small host-specific `~/.zshrc` that sources the shared pieces.
+
+For Raspberry Pi, this repo also includes:
+
+- a package bootstrap script
+- a tmux config
+- a config backup script
+- a user-level `systemd` timer template for daily config backups
 
 ## Rules
 
