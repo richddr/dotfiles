@@ -76,6 +76,7 @@ source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 export LANG=en_US.UTF-8
+export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/sbin:$PATH"
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -128,8 +129,7 @@ zstyle ':bracketed-paste-magic' active-widgets '.self-*'
 
 # export NVM_DIR="/Users/rgarcia/.nvm"
 # [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-export PATH="/usr/local/sbin:$PATH"
-
+[ -f "$HOME/.config/shell/env.sh" ] && source "$HOME/.config/shell/env.sh"
 
 
 # History Configuration
@@ -149,16 +149,22 @@ if command -v starship &> /dev/null; then
 fi
 
 # Zoxide (better cd)
-eval "$(zoxide init zsh)"
+if command -v zoxide &> /dev/null; then
+  eval "$(zoxide init zsh)"
+fi
 
 # Direnv
-eval "$(direnv hook zsh)"
+if command -v direnv &> /dev/null; then
+  eval "$(direnv hook zsh)"
+fi
 
 # FZF Keybindings
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Atuin (Magical Shell History)
-eval "$(atuin init zsh)"
+if command -v atuin &> /dev/null; then
+  eval "$(atuin init zsh)"
+fi
 
 # Ported from .profile
 histgrep () {
@@ -181,3 +187,14 @@ _archive_history() {
 }
 autoload -U add-zsh-hook
 add-zsh-hook precmd _archive_history
+
+[ -f "$HOME/.zshrc.local" ] && source "$HOME/.zshrc.local"
+
+# OpenClaw Completion
+[ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"
+
+if command -v op &> /dev/null; then
+  [ -f "$HOME/.config/op/service-account.env" ] && source "$HOME/.config/op/service-account.env"
+  eval "$(op completion zsh)"
+  compdef _op op
+fi

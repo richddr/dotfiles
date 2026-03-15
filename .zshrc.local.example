@@ -1,0 +1,4 @@
+# Machine-specific shell customizations belong here.
+# Examples:
+# export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
+# [ -f "$HOME/.openclaw/completions/openclaw.zsh" ] && source "$HOME/.openclaw/completions/openclaw.zsh"

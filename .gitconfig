@@ -1,10 +1,13 @@
+[include]
+    path = ~/.gitconfig.local
 [user]
     name = Richard Garcia
-    email = richard.garcia.alevante@gmail.com
+    email = richagarcia@gmail.com
 [color]
     ui = true
 [core]
     pager = delta
+    excludesfile = ~/.gitignore_global
 [interactive]
     diffFilter = delta --color-only
 [delta]
@@ -23,7 +26,6 @@
   ci = commit
   st = status
   last = log -1 HEAD
-  visual = !gitk
   ec = config --global -e
   cob = checkout -b
   cm = !git add -A && git commit -m
@@ -31,7 +33,6 @@
   wip = commit -am "WIP"
   undo = reset HEAD~1 --mixed
   amend = commit -a --amend
-  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
   bclean = "!f() { git branch --merged ${1-master} | grep -v " ${1-master}$" | xargs -r git branch -d; }; f"
   bdone = "!f() { git checkout ${1-master} && git up && git bclean ${1-master}; }; f"
   ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
@@ -51,9 +52,6 @@
   r = reset
   r1 = reset HEAD^
   r2 = reset HEAD^^
-  rh = reset --hard
-  rh1 = reset HEAD^ --hard
-  rh2 = reset HEAD^^ --hard
   sl = stash list
   sa = stash apply
   ss = stash save
