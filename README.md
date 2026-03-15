@@ -250,3 +250,80 @@ When changing config:
 4. Commit only the shared files.
 
 That keeps future laptop or Pi setup straightforward and avoids leaking credentials.
+
+## New Machine Checklist
+
+### macOS
+
+1. Install base tooling:
+   - Homebrew
+   - `git`
+   - `zsh`
+   - `starship`
+   - `gh`
+   - `op`
+   - `tmux`
+   - `node`
+   - `pipx`
+2. Clone this repo to `~/gh/dotfiles`.
+3. Run:
+
+```bash
+~/gh/dotfiles/bootstrap.sh
+```
+
+4. Create local-only files as needed:
+   - `~/.zshrc.local`
+   - `~/.gitconfig.local`
+   - `~/.config/shell/env.sh`
+   - `~/.config/op/service-account.env`
+5. Configure GitHub auth:
+
+```bash
+gh auth login
+```
+
+6. Verify:
+
+```bash
+zsh -lic 'echo shell_ok'
+git config user.email
+starship --version
+```
+
+### Raspberry Pi / Linux
+
+1. Install Raspberry Pi OS or Debian and enable:
+   - Wi-Fi
+   - SSH
+2. Clone this repo to `~/gh/dotfiles`.
+3. Run:
+
+```bash
+~/gh/dotfiles/bootstrap-linux-packages.sh
+~/gh/dotfiles/bootstrap.sh
+```
+
+4. Create local-only files:
+   - `~/.zshrc.local`
+   - `~/.gitconfig.local`
+   - `~/.config/shell/env.sh`
+   - `~/.config/op/service-account.env`
+5. Configure auth as needed:
+   - `gh auth login`
+   - add SSH key to GitHub
+   - set `GEMINI_API_KEY`
+   - set `OP_SERVICE_ACCOUNT_TOKEN`
+6. Optional Pi follow-up:
+   - migrate root to NVMe
+   - enable config backup timer
+   - harden SSH to key-only auth
+7. Verify:
+
+```bash
+findmnt -no SOURCE /
+gh auth status
+docker ps
+tmux -V
+uv --version
+```
