@@ -37,3 +37,4 @@ alias gti='git'
 alias bss="bin/spring"
 alias gg='git grep'
 alias recent-note='code ~/Dropbox/Documents/GR/Notes/$(date +%Y-%W).notes.txt'
+alias openclaw-pi-tunnel='ssh -N rgarcia-pi5-openclaw'

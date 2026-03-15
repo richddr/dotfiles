@@ -161,6 +161,39 @@ The override file lives at:
 sudo /usr/sbin/sshd -T | rg 'passwordauthentication|kbdinteractiveauthentication|permitrootlogin|pubkeyauthentication'
 ```
 
+### OpenClaw UI From Another Machine
+
+The Pi OpenClaw gateway is intentionally bound to loopback only.
+
+To access the Pi-hosted web UI from a Mac, use an SSH tunnel:
+
+```bash
+ssh -N -L 18789:127.0.0.1:18789 rgarcia-pi5
+```
+
+Then open:
+
+```text
+http://127.0.0.1:18789/
+```
+
+Recommended convenience setup:
+
+- SSH host alias: `rgarcia-pi5-openclaw`
+- shell alias: `openclaw-pi-tunnel`
+
+With that in place:
+
+```bash
+openclaw-pi-tunnel
+```
+
+Then browse to:
+
+```text
+http://127.0.0.1:18789/
+```
+
 ### Add a New Machine
 
 From the new machine:
