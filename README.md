@@ -28,8 +28,10 @@ Those belong in local-only files outside git.
 - [`.gitconfig`](/Users/rgarcia/gh/dotfiles/.gitconfig): shared Git config
 - [`.gitignore_global`](/Users/rgarcia/gh/dotfiles/.gitignore_global): shared global Git ignore
 - [starship.toml](/Users/rgarcia/gh/dotfiles/starship.toml): shared prompt config
+- [`.tmux.conf`](/Users/rgarcia/gh/dotfiles/.tmux.conf): shared tmux defaults
 - [`.zshrc.local.example`](/Users/rgarcia/gh/dotfiles/.zshrc.local.example): example machine-local shell overlay
 - [`.gitconfig.local.example`](/Users/rgarcia/gh/dotfiles/.gitconfig.local.example): example machine-local Git overlay
+- [bootstrap.sh](/Users/rgarcia/gh/dotfiles/bootstrap.sh): idempotent machine bootstrap helper
 
 ## Local Files
 
@@ -91,6 +93,12 @@ Use a small top-level Git config that includes the repo config:
 
 Then keep machine-specific overrides in `~/.gitconfig.local`.
 
+Bootstrap option:
+
+```bash
+~/gh/dotfiles/bootstrap.sh
+```
+
 ## Linux / Pi Setup
 
 For Linux or Raspberry Pi:
@@ -105,6 +113,12 @@ Example:
 ```bash
 ln -sfn ~/gh/dotfiles/.gitignore_global ~/.gitignore_global
 ln -sfn ~/gh/dotfiles/starship.toml ~/.config/starship.toml
+```
+
+Bootstrap option:
+
+```bash
+~/gh/dotfiles/bootstrap.sh
 ```
 
 Whether `~/.zshrc` itself should symlink to the repo depends on how much host-specific customization that machine needs. If a machine has heavier local differences, keep a small host-specific `~/.zshrc` that sources the shared pieces.
