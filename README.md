@@ -139,6 +139,100 @@ For Raspberry Pi, this repo also includes:
 - a config backup script
 - a user-level `systemd` timer template for daily config backups
 
+## Pi SSH Access
+
+The current Pi setup uses key-only SSH.
+
+Applied settings:
+
+- `PasswordAuthentication no`
+- `KbdInteractiveAuthentication no`
+- `ChallengeResponseAuthentication no`
+- `PermitRootLogin no`
+- `PubkeyAuthentication yes`
+
+The override file lives at:
+
+- `/etc/ssh/sshd_config.d/99-hardening.conf`
+
+### Verify Current SSH Settings
+
+```bash
+sudo /usr/sbin/sshd -T | rg 'passwordauthentication|kbdinteractiveauthentication|permitrootlogin|pubkeyauthentication'
+```
+
+### Add a New Machine
+
+From the new machine:
+
+```bash
+ssh-keygen -t ed25519
+ssh-copy-id richddr@rgarcia-pi5.local
+```
+
+Or manually append the new public key on the Pi:
+
+```bash
+mkdir -p ~/.ssh
+chmod 700 ~/.ssh
+printf '%s\n' 'ssh-ed25519 AAAA... new-machine' >> ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/authorized_keys
+```
+
+### If You Lose Access to the Current SSH Key
+
+Use one of these recovery paths:
+
+1. Use another already-authorized machine and add a new key to `~/.ssh/authorized_keys`.
+2. Use local console access on the Pi with keyboard/monitor and add a new key manually.
+3. Temporarily re-enable password SSH from the local console, log in once from the new machine, add the new key, then disable password SSH again.
+
+### Re-enable Password SSH
+
+From local console access on the Pi:
+
+```bash
+sudo rm /etc/ssh/sshd_config.d/99-hardening.conf
+sudo systemctl restart ssh
+```
+
+Or edit the override file directly:
+
+```bash
+sudoedit /etc/ssh/sshd_config.d/99-hardening.conf
+sudo systemctl restart ssh
+```
+
+To explicitly allow passwords again, use:
+
+```conf
+PasswordAuthentication yes
+KbdInteractiveAuthentication yes
+ChallengeResponseAuthentication yes
+```
+
+### Disable Password SSH Again
+
+Recreate the hardening override:
+
+```bash
+cat <<'EOF' | sudo tee /etc/ssh/sshd_config.d/99-hardening.conf >/dev/null
+PasswordAuthentication no
+KbdInteractiveAuthentication no
+ChallengeResponseAuthentication no
+PermitRootLogin no
+PubkeyAuthentication yes
+EOF
+sudo /usr/sbin/sshd -t
+sudo systemctl restart ssh
+```
+
+### Recommended Practice
+
+- Keep at least two authorized machines/keys for the Pi.
+- Keep one recovery path available: local console, a second admin machine, or both.
+- Prefer adding a new key over re-enabling password SSH.
+
 ## Rules
 
 - Never commit secrets.
