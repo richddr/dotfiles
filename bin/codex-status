@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SESSION_NAME="${1:-codex}"
+
+if ! tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+  echo "missing"
+  exit 1
+fi
+
+tmux list-sessions -F '#{session_name}\t#{session_windows}\t#{session_attached}\t#{session_created_string}' \
+  | awk -F '\t' -v target="$SESSION_NAME" '$1 == target { printf "name=%s windows=%s attached=%s created=%s\n", $1, $2, $3, $4 }'

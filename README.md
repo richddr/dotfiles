@@ -150,6 +150,7 @@ Helpers installed by `bootstrap.sh`:
 
 - `codex-session`: attach to `tmux` session `codex`, or create it in `~/gh/project-alpha`
 - `codex-detach`: detach the current tmux client, or detach the `codex` session from another shell
+- `codex-status`: show whether the `codex` tmux session exists and whether it is attached
 
 Typical flow on the Pi:
 
@@ -192,6 +193,12 @@ codex-session
 
 ```bash
 tmux ls
+```
+
+- `Codex status`
+
+```bash
+codex-status
 ```
 
 Use `tmux detach-client` when you are already inside tmux. Use `codex-session`
