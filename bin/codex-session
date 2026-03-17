@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+SESSION_NAME="${1:-codex}"
+WORKDIR="${CODEX_SESSION_WORKDIR:-$HOME/gh/project-alpha}"
+
+if tmux has-session -t "$SESSION_NAME" 2>/dev/null; then
+  exec tmux attach -d -t "$SESSION_NAME"
+fi
+
+exec tmux new -s "$SESSION_NAME" -c "$WORKDIR"

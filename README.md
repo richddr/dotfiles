@@ -136,8 +136,66 @@ For Raspberry Pi, this repo also includes:
 
 - a package bootstrap script
 - a tmux config
+- helper scripts under `bin/`
 - a config backup script
 - a user-level `systemd` timer template for daily config backups
+
+## Pi Codex Session
+
+The Pi is the canonical long-lived dev host. For mobile continuity, keep `codex`
+running inside a tmux session on the Pi and reattach from other devices instead
+of starting a new local session elsewhere.
+
+Helpers installed by `bootstrap.sh`:
+
+- `codex-session`: attach to `tmux` session `codex`, or create it in `~/gh/project-alpha`
+- `codex-detach`: detach the current tmux client, or detach the `codex` session from another shell
+
+Typical flow on the Pi:
+
+```bash
+codex-session
+cd ~/gh/project-alpha
+codex
+```
+
+From another device later:
+
+```bash
+ssh rgarcia-pi5-remote
+codex-session
+```
+
+### Termius Snippets
+
+Mobile keyboards make `Ctrl-b d` awkward. In Termius, prefer snippets:
+
+- `Attach Codex`
+
+```bash
+codex-session
+```
+
+- `Detach Codex`
+
+```bash
+tmux detach-client
+```
+
+- `Steal/reattach Codex`
+
+```bash
+codex-session
+```
+
+- `List tmux`
+
+```bash
+tmux ls
+```
+
+Use `tmux detach-client` when you are already inside tmux. Use `codex-session`
+when you want to take the session back from another device.
 
 ## Pi SSH Access
 
