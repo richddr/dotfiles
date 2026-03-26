@@ -331,6 +331,24 @@ sudo systemctl restart ssh
 - Keep one recovery path available: local console, a second admin machine, or both.
 - Prefer adding a new key over re-enabling password SSH.
 
+### Re-enable Bluetooth or ModemManager on the Pi
+
+If you previously hardened the Pi by disabling these services, re-enable them with:
+
+```bash
+sudo systemctl enable --now bluetooth.service
+sudo systemctl enable --now ModemManager.service
+```
+
+To disable them again:
+
+```bash
+sudo systemctl disable --now bluetooth.service
+sudo systemctl disable --now ModemManager.service
+```
+
+Use this only if you actually need Bluetooth peripherals or modem/cellular support on the Pi.
+
 ## Rules
 
 - Never commit secrets.
