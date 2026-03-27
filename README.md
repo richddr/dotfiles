@@ -233,18 +233,18 @@ The Pi OpenClaw gateway is intentionally bound to loopback only.
 To access the Pi-hosted web UI from a Mac, use an SSH tunnel:
 
 ```bash
-ssh -N -L 18789:127.0.0.1:18789 rgarcia-pi5
+ssh -N rgarcia-pi5-remote-openclaw
 ```
 
 Then open:
 
 ```text
-http://127.0.0.1:18789/
+http://openclaw-pi.localhost:18789/
 ```
 
 Recommended convenience setup:
 
-- SSH host alias: `rgarcia-pi5-openclaw`
+- SSH host alias: `rgarcia-pi5-remote-openclaw`
 - shell alias: `openclaw-pi-tunnel`
 
 With that in place:
@@ -256,8 +256,23 @@ openclaw-pi-tunnel
 Then browse to:
 
 ```text
-http://127.0.0.1:18789/
+http://openclaw-pi.localhost:18789/
 ```
+
+The older `rgarcia-pi5-openclaw` alias still works for local-network `.local` access, but the remote/Tailscale alias above is the preferred default.
+
+Equivalent URLs that also work:
+
+- `http://localhost:18789/`
+- `http://127.0.0.1:18789/`
+
+If the dashboard shows `unauthorized: gateway token missing`, paste the
+gateway token into the UI once. In this setup the token is SecretRef-managed,
+so `openclaw dashboard` intentionally does not print a tokenized URL.
+
+The token lives in 1Password at:
+
+- `OpenClaw` -> `gateway_auth_token` -> `credential`
 
 ### Add a New Machine
 
@@ -320,6 +335,8 @@ KbdInteractiveAuthentication no
 ChallengeResponseAuthentication no
 PermitRootLogin no
 PubkeyAuthentication yes
+X11Forwarding no
+AllowTcpForwarding local
 EOF
 sudo /usr/sbin/sshd -t
 sudo systemctl restart ssh
