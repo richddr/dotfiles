@@ -204,6 +204,12 @@ codex-status
 Use `tmux detach-client` when you are already inside tmux. Use `codex-session`
 when you want to take the session back from another device.
 
+## Pi Infrastructure & Home Operations
+
+For Docker stacks (Home Assistant, AdGuard Home), network topology (Tailscale Subnet Routing & Exit Node), systemd backup units, and UPS runbooks, see the dedicated infrastructure repository:
+
+- [home-ops](https://github.com/richddr/home-ops)
+
 ## Pi SSH Access
 
 The current Pi setup uses key-only SSH.
